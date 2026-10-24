@@ -117,7 +117,7 @@ Every capability below links to its **original Lightricks model card** for examp
 
 These are **local open-weights capabilities**. Most use the standard Studio preparation path; HDR and Slow motion open specialist workflow handoffs. Layout, Restore, and Refine also need their effect-specific downstream stages. All 15 adapters are available through **LTX VFX · Apply Effect** inside their matching graphs. Catalog coverage does not mean every complete pipeline has been GPU-tested.
 
-**See the effect before you try it.** The clickable stills below are captured from **Lightricks’ original Hugging Face demos**. Click a preview or its video link to watch the original. These are upstream examples, not renders verified through OpenPositive. Full videos may require Hugging Face sign-in and acceptance of the repository’s access terms. Pixel Upscaler currently has no published demo on its model card. [Demo sources and credits](docs/demos/README.md)
+**See the effect before you try it.** The looping GIFs below are converted from **Lightricks’ original Hugging Face demos**. Open a preview’s model card or its video link to watch the full original. These are upstream examples, not renders verified through OpenPositive. Full videos may require Hugging Face sign-in and acceptance of the repository’s access terms. Pixel Upscaler currently has no published demo on its model card. [Demo sources and credits](docs/demos/README.md)
 
 ### Find your task
 
@@ -147,7 +147,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Resample your source to 24 fps and follow the recommended development-model sampling recipe. This is a whole-frame transformation, without a region mask.
 
-[![Day to night: still from Lightricks’ original demo; click to watch](docs/demos/day-to-night.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night)
+[![Day to night: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/day-to-night.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night)
 
 **Original demo:** [▶ Watch Day to night — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night/resolve/main/examples/Examples_6__step_003000_02.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night)
 
@@ -161,7 +161,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** This is full-frame removal, not a brush-based object eraser. Inspect reconstructed areas before compositing; the upstream example may require an audio track or silence.
 
-[![Clean plate: still from Lightricks’ original demo; click to watch](docs/demos/clean-plate.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate)
+[![Clean plate: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/clean-plate.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate)
 
 **Original demo:** [▶ Watch Clean plate — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate/resolve/main/examples/clean_plate_001_output_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate)
 
@@ -175,7 +175,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Use native-resolution, stage-1 sampling with reference conditioning retained throughout. Increasing strength too far can distort faces and fine detail.
 
-[![Water simulation: still from Lightricks’ original demo; click to watch](docs/demos/water-simulation.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation)
+[![Water simulation: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/water-simulation.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation)
 
 **Original demo:** [▶ Watch Water simulation — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation/resolve/main/examples/rabbit_forest_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation)
 
@@ -201,7 +201,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** The adapter targets defocus rather than motion blur. For identity-sensitive footage, follow the native-resolution stage-1 workflow and inspect the result closely.
 
-[![Deblur: still from Lightricks’ original demo; click to watch](docs/demos/deblur.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Deblur)
+[![Deblur: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/deblur.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Deblur)
 
 **Original demo:** [▶ Watch Deblur — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Deblur/resolve/main/examples/Examples_4__00_15485932_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Deblur)
 
@@ -215,7 +215,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Choose this for compression artifacts rather than general blur or noise. Preserve the reference in the stage-1 workflow.
 
-[![Decompression: still from Lightricks’ original demo; click to watch](docs/demos/decompression.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Decompression)
+[![Decompression: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/decompression.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Decompression)
 
 **Original demo:** [▶ Watch Decompression — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Decompression/resolve/main/examples/Examples_2__27_sunflower_field_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Decompression)
 
@@ -229,7 +229,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Colors are inferred. They are not proof of the source’s historical colors.
 
-[![Colorization: still from Lightricks’ original demo; click to watch](docs/demos/colorization.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Colorization)
+[![Colorization: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/colorization.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Colorization)
 
 **Original demo:** [▶ Watch Colorization — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Colorization/resolve/main/examples/Examples_5__00_rabbit_rocks_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Colorization)
 
@@ -243,7 +243,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Use a still, not a video batch. Describe both what moves and what remains frozen. The supplied starter uses the development transformer; camera moves and complex body motion are outside the intended use.
 
-[![Cinemagraph: still from Lightricks’ original demo; click to watch](docs/demos/cinemagraph.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph)
+[![Cinemagraph: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/cinemagraph.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph)
 
 **Original demo:** [▶ Watch Cinemagraph — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph/resolve/main/examples/Glasses_LTX_2.3_i2v_00272_.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph)
 
@@ -257,7 +257,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** This generates motion from an image; it does not slow down an existing clip. **Dedicated workflow required.** Fetch the gated workflow using the downloader’s `--workflows` option after accepting its terms.
 
-[![Slow motion: still from Lightricks’ original demo; click to watch](docs/demos/slow-motion-control.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control)
+[![Slow motion: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/slow-motion-control.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control)
 
 **Original demo:** [▶ Watch Slow motion — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control/resolve/main/examples/ny_street_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control)
 
@@ -271,7 +271,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** The graph repeats one sheet as a static reference for at least 121 frames. Elements absent from the sheet are not identity-controlled.
 
-[![Ingredients: still from Lightricks’ original demo; click to watch](docs/demos/ingredients.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients)
+[![Ingredients: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/ingredients.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients)
 
 **Original demo:** [▶ Watch Ingredients — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients/resolve/main/examples/ingredients_lora_1.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients)
 
@@ -285,7 +285,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** **Dedicated workflow required.** Scene embeddings, color transforms, and HDR export are essential. An ordinary 8-bit MP4 or brighter preview is not an HDR master.
 
-[![SDR to HDR: still from Lightricks’ original demo; click to watch](docs/demos/sdr-to-hdr.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR)
+[![SDR to HDR: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/sdr-to-hdr.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR)
 
 **Original demo:** [▶ Watch SDR to HDR — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR/resolve/main/examples/sdr-to-hdr-boxing_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR)
 
@@ -299,9 +299,9 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Both inputs are required. Use the official two-stage workflow; Studio prepares the first-stage conditioning, and the second stage must keep the adapter and appropriate guides active.
 
-[![Layout to render: still from Lightricks’ original demo; click to watch](docs/demos/layout-to-render.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render)
+[![Layout to render: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/layout-to-render.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render)
 
-**Original demo:** [▶ Watch Layout to render — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render/resolve/main/examples/summer.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render)
+**Original demo:** [▶ Watch Layout to render — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render/resolve/main/examples/blocking.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render)
 
 [Original model, examples, and downloads on Hugging Face](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render)
 
@@ -313,7 +313,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Use the matching spatial tiled sampler when larger than one tile. Studio’s temporal guide encoding alone does not perform spatial tiled sampling. For archive footage, restore first, then refine.
 
-[![Refine details: still from Lightricks’ original demo; click to watch](docs/demos/refine-details.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details)
+[![Refine details: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/refine-details.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details)
 
 **Original demo:** [▶ Watch Refine details — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details/resolve/main/examples/refine_forest_stream_crop.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details)
 
@@ -327,7 +327,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** Do not pre-sharpen or pre-denoise. Use the dedicated tiled restoration setup and preserve aspect ratio. Generated reconstruction and color are not historical evidence.
 
-[![Restore archive: still from Lightricks’ original demo; click to watch](docs/demos/restore.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Restore)
+[![Restore archive: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/restore.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Restore)
 
 **Original demo:** [▶ Watch Restore archive — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Restore/resolve/main/examples/restore_family_meal_1954_crop.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Restore)
 
@@ -341,7 +341,7 @@ These are **local open-weights capabilities**. Most use the standard Studio prep
 
 **Keep in mind:** The output is a grayscale matte, not an RGBA video. Use native-resolution stage-1 inference, stay within the 145-frame limit, and combine the matte with the source in your compositor.
 
-[![Alpha matte: still from Lightricks’ original demo; click to watch](docs/demos/alpha-gen.jpg)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen)
+[![Alpha matte: animated excerpt from Lightricks’ original demo; click for the source](docs/demos/alpha-gen.gif)](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen)
 
 **Original demo:** [▶ Watch Alpha matte — Lightricks’ video](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen/resolve/main/examples/dragon_fire_sbs.mp4) · [Open the original model card](https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen)
 

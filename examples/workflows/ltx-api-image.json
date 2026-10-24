@@ -1,0 +1,41 @@
+{
+  "10": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "replace-with-your-still.png"
+    }
+  },
+  "30": {
+    "class_type": "LTXAPIGenerate",
+    "inputs": {
+      "mode": "Image to video",
+      "prompt": "Locked camera. Animate only the water and mist in the source image.",
+      "model": "ltx-2-5-fast",
+      "resolution": "1280x720",
+      "duration_seconds": 6,
+      "fps": 24,
+      "generate_audio": true,
+      "allow_api_requests": false,
+      "render_id": 0,
+      "timeout_seconds": 1800,
+      "resume_job_id": "",
+      "image": [
+        "10",
+        0
+      ]
+    }
+  },
+  "90": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "30",
+        0
+      ],
+      "filename_prefix": "LTX_API/image",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  }
+}

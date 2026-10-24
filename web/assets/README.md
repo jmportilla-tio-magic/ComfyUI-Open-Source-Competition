@@ -1,0 +1,5 @@
+# Sample image
+
+`sample-shot.png` was generated with the built-in imagegen tool for this project's interface. It is an illustrative source image, not an LTX-2.5 model output. The nighttime comparison is a CSS lighting study, labeled as such in the viewer. Import your own source and rendered reference to compare real footage.
+
+Generation prompt: "Use case: photorealistic-natural. Asset type: cinematic sample shot for a VFX post-production tool interface, landscape 16:9. A beautiful realistic cinematic aerial still of a small burnt-orange vintage sports car traveling away along a narrow winding gray asphalt road through a vast Icelandic valley. Road leads from bottom center toward middle right and curves into distance. Huge steep moody dark moss-covered mountains rise at the left and right. Low thin mist in valley, very detailed natural landscape and cloudy pale blue-gray sky. Cool desaturated teal greens with restrained orange accent of car. Shot on 35mm cinema lens, natural soft late afternoon light, premium film cinematography, clean fine textures, no people. Fill the frame with the actual photo, no UI, no text, no border, no watermark."

@@ -1,0 +1,15 @@
+/* Locally bundled SIL Open Font License fonts; no network required. */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('./dm-sans-variable.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('./manrope-variable.ttf') format('truetype');
+}

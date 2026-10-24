@@ -1,0 +1,8 @@
+{
+  "source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/220e1d45aa0469f518e982102fca4dca92a61862/example_workflows/2.5/HDR_workflows/LTX-2.5_ICLoRA_SDR_to_HDR_Distilled.json",
+  "revision": "220e1d45aa0469f518e982102fca4dca92a61862",
+  "sha256": "cc6629979f8a92c6c01cd9470747adafcc893a6954568f0aa73656246ccbce8f",
+  "upstream_license": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/master/LICENSE",
+  "model_card": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR",
+  "format": "ComfyUI canvas workflow; export API format after resolving local models and input"
+}

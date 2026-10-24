@@ -1,0 +1,188 @@
+{
+  "10": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "replace-with-your-still.png"
+    }
+  },
+  "20": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "ltx-2.5-22b-dev-transformer-bf16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "21": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+      "type": "ltxv",
+      "device": "default"
+    }
+  },
+  "22": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+    }
+  },
+  "30": {
+    "class_type": "LTXVFXStudio",
+    "inputs": {
+      "model": [
+        "20",
+        0
+      ],
+      "clip": [
+        "21",
+        0
+      ],
+      "vae": [
+        "22",
+        0
+      ],
+      "source": [
+        "10",
+        0
+      ],
+      "effect": "Cinemagraph",
+      "prompt": "CINEMAGRAPH_MOTION, locked-off static camera. Only the water ripples gently. All surrounding objects and the background remain completely still. Seamless natural loop.",
+      "negative_prompt": "camera movement, zoom, sliding background, moving objects, distorted geometry",
+      "strength": 1.0,
+      "guide_strength": 1.0,
+      "width": 512,
+      "height": 704,
+      "frames": 25,
+      "frame_rate": 24.0
+    }
+  },
+  "40": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 42
+    }
+  },
+  "41": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "30",
+        0
+      ],
+      "positive": [
+        "30",
+        1
+      ],
+      "negative": [
+        "30",
+        2
+      ],
+      "cfg": 4.0
+    }
+  },
+  "42": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler_ancestral"
+    }
+  },
+  "43": {
+    "class_type": "LTXVScheduler",
+    "inputs": {
+      "steps": 30,
+      "max_shift": 2.05,
+      "base_shift": 0.95,
+      "stretch": true,
+      "terminal": 0.1,
+      "latent": [
+        "30",
+        3
+      ]
+    }
+  },
+  "50": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "40",
+        0
+      ],
+      "guider": [
+        "41",
+        0
+      ],
+      "sampler": [
+        "42",
+        0
+      ],
+      "sigmas": [
+        "43",
+        0
+      ],
+      "latent_image": [
+        "30",
+        3
+      ]
+    }
+  },
+  "60": {
+    "class_type": "LTXVFXCropGuides",
+    "inputs": {
+      "positive": [
+        "30",
+        1
+      ],
+      "negative": [
+        "30",
+        2
+      ],
+      "latent": [
+        "50",
+        0
+      ]
+    }
+  },
+  "70": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "60",
+        2
+      ],
+      "vae": [
+        "22",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "80": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "70",
+        0
+      ],
+      "fps": 24.0,
+      "bit_depth": 8,
+      "color_space": "sRGB",
+      "codec": "none"
+    }
+  },
+  "90": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "80",
+        0
+      ],
+      "filename_prefix": "LTXVFX/cinemagraph",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  }
+}

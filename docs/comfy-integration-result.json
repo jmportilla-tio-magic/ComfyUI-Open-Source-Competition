@@ -1,0 +1,203 @@
+{
+  "verified_date": "2026-10-23",
+  "comfyui_version": "0.42.0",
+  "comfyui_commit": "8baf68d53d751216dd95d4f678bf109d82db3442",
+  "comfyui_ltxvideo_commit": "220e1d45aa0469f518e982102fca4dca92a61862",
+  "frontend_version": "1.57.1",
+  "python_version": "3.12.9",
+  "torch_version": "2.14.1",
+  "device": "cpu",
+  "command": "python tests/comfy_integration.py --comfy-root /path/to/ComfyUI",
+  "actual_ltx_inference": false,
+  "model_weights_downloaded": false,
+  "result": {
+    "weights": "stand-ins; no inference",
+    "effects": [
+      {
+        "effect": "day-to-night",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "clean-plate",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "water-simulation",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "pixel-spatial-upscaler",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "deblur",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "decompression",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "colorization",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "cinemagraph",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "slow-motion-control",
+        "status": "dedicated-workflow guard verified"
+      },
+      {
+        "effect": "ingredients",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          16,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "sdr-to-hdr",
+        "status": "dedicated-workflow guard verified"
+      },
+      {
+        "effect": "layout-to-render",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "effect": "refine-details",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          16,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "restore",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          16,
+          4,
+          4
+        ]
+      },
+      {
+        "effect": "alpha-gen",
+        "status": "native CPU conditioning and crop passed",
+        "shape": [
+          1,
+          128,
+          2,
+          4,
+          4
+        ]
+      }
+    ],
+    "starter_schema_nodes": 14,
+    "native_video_roundtrip": {
+      "format": "MP4",
+      "frames": 3,
+      "width": 64,
+      "height": 64,
+      "bytes": 1724,
+      "hosted_video_wrapper": "passed with local synthetic file; no API transport"
+    },
+    "hosted_graph_schema_nodes": {
+      "ltx-api-text.json": 2,
+      "ltx-api-image.json": 3
+    },
+    "hosted_image_encoding": "real CPU tensor to inline PNG; no API transport"
+  },
+  "frontend": {
+    "catalog_entries": 15,
+    "launch_in_comfyui": "passed",
+    "apply_to_native_node": "passed",
+    "api_export_retains_widget_values": "passed",
+    "effect": "cinemagraph",
+    "width": 512,
+    "height": 704,
+    "frames": 25,
+    "frame_rate": 24,
+    "inference_run": false,
+    "reopen_restores_controls": "passed"
+  },
+  "actual_ltx_api_request": false,
+  "registered_project_nodes": [
+    "LTXVFXStudio",
+    "LTXVFXApplyEffect",
+    "LTXVFXCropGuides",
+    "LTXAPIGenerate"
+  ]
+}

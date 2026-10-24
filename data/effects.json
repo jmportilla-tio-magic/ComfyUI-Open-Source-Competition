@@ -1,0 +1,733 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-10-23",
+  "collection_url": "https://huggingface.co/collections/Lightricks/ltx-25-creative-lab",
+  "base_model": {
+    "name": "LTX-2.5 22B",
+    "repo_id": "Lightricks/LTX-2.5",
+    "source_url": "https://huggingface.co/Lightricks/LTX-2.5",
+    "assets": [
+      {
+        "role": "transformer",
+        "repo_id": "Lightricks/LTX-2.5",
+        "filename": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+        "required": true,
+        "destination": "diffusion_models"
+      },
+      {
+        "role": "text_encoder",
+        "repo_id": "Lightricks/LTX-2.5",
+        "filename": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+        "required": true,
+        "destination": "text_encoders"
+      },
+      {
+        "role": "video_vae",
+        "repo_id": "Lightricks/LTX-2.5",
+        "filename": "vae/ltx-2.5-video-vae-bf16.safetensors",
+        "required": true,
+        "destination": "vae"
+      },
+      {
+        "role": "audio_vae",
+        "repo_id": "Lightricks/LTX-2.5",
+        "filename": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+        "required": false,
+        "destination": "vae"
+      },
+      {
+        "role": "spatial_upscaler",
+        "repo_id": "Lightricks/LTX-2.5",
+        "filename": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+        "required": false,
+        "destination": "latent_upscale_models"
+      },
+      {
+        "role": "dev_transformer",
+        "repo_id": "Lightricks/LTX-2.5",
+        "filename": "diffusion_models/ltx-2.5-22b-dev-transformer-bf16.safetensors",
+        "required": false,
+        "destination": "diffusion_models"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "id": "day-to-night",
+      "name": "Day to night",
+      "category": "transform",
+      "summary": "Relight a daytime shot into a natural night scene.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night",
+      "filename": "ltx-2.5-22b-ic-lora-day-to-night-0.9.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "A realistic nighttime scene. Describe moonlight, practical lights and the desired mood. Preserve the source framing and motion.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "The original camera and subject motion guide the result.",
+        "Resample the source to 24 fps before encoding.",
+        "No region mask support."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Day-To-Night",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#dcadf4",
+      "pipeline": "ic_lora_dev",
+      "defaults": {
+        "width": 768,
+        "height": 448,
+        "frames": 97,
+        "fps": 24,
+        "steps": 30,
+        "cfg": 3.5
+      },
+      "companion_files": [],
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "dev",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-dev-transformer-bf16.safetensors",
+      "sampler_note": "The published 30-step CFG recipe uses the non-distilled sampling family. Use the dev transformer for these settings; distilled graphs need their own fixed schedule."
+    },
+    {
+      "id": "clean-plate",
+      "name": "Clean plate",
+      "category": "composite",
+      "summary": "Remove moving subjects and rebuild a clean background plate.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate",
+      "filename": "ltx-2.5-22b-ic-lora-clean-plate-1.0.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Describe the same empty environment, with no people or moving subjects. Name unwanted objects explicitly.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Full-frame removal; no user region mask.",
+        "Best when enough background is visible around the subjects.",
+        "The original example workflow expects an audio track; use silence when necessary."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Clean-Plate",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#f1c18b",
+      "pipeline": "ic_lora",
+      "defaults": {
+        "width": 1024,
+        "height": 576,
+        "frames": 49,
+        "fps": 25,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "water-simulation",
+      "name": "Water simulation",
+      "category": "transform",
+      "summary": "Add flowing water, rain, spray or flooding to an existing shot.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation",
+      "filename": "ltx-2.5-22b-ic-lora-water-simulation-0.9.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Reference shows the dry scene. Edited shows the same scene with water added. ADD WATER a clear stream flowing around the subjects.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Use the literal ADD WATER trigger.",
+        "Keep reference conditioning active for the entire native-resolution denoise.",
+        "Strengths at or above 1.5 can distort faces and fine detail."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Water-Simulation",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#dcadf4",
+      "pipeline": "ic_lora_stage1",
+      "defaults": {
+        "width": 1920,
+        "height": 1088,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "trigger": "ADD WATER",
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "pixel-spatial-upscaler",
+      "name": "Pixel upscaler ×2",
+      "category": "finishing",
+      "summary": "Generate a larger image with newly synthesized fine detail.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler",
+      "filename": "ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Describe the existing scene and the texture you want to preserve.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 2,
+      "output_scale": 2,
+      "notes": [
+        "A creative upscaler: added detail is generated, not recovered.",
+        "Supply a clean reference at half the target width and height.",
+        "Keep source framing and aspect ratio unchanged."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#91b8f5",
+      "pipeline": "ic_lora",
+      "defaults": {
+        "width": 1024,
+        "height": 576,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "dimension_multiple": 64,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "deblur",
+      "name": "Deblur",
+      "category": "finishing",
+      "summary": "Recover sharpness in softly focused or defocused footage.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Deblur",
+      "filename": "ltx-2.5-22b-ic-lora-deblur-0.9.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Reference shows the scene out of focus. Edited shows the same scene in sharp focus. DEBLUR the scene with crisp detail and clean edges.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Trained for defocus, not motion blur.",
+        "Lower strength toward 0.8 if halos or oversharpening appear.",
+        "Use native-resolution stage-1-only inference for identity-critical work."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Deblur",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#91b8f5",
+      "pipeline": "ic_lora_stage1",
+      "defaults": {
+        "width": 960,
+        "height": 544,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "trigger": "DEBLUR",
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "decompression",
+      "name": "Decompression",
+      "category": "finishing",
+      "summary": "Reduce blocking, ringing, banding and chroma bleed.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Decompression",
+      "filename": "ltx-2.5-22b-ic-lora-decompression-0.9.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Reference shows the compressed scene. Edited shows the same scene with clean edges and no compression artifacts. ENHANCE QUALITY the scene.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Targets compression damage rather than general blur or noise.",
+        "Start near 960 × 544, 121 frames at 24 fps.",
+        "Use stage-1-only inference with the reference retained."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Decompression",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#91b8f5",
+      "pipeline": "ic_lora_stage1",
+      "defaults": {
+        "width": 960,
+        "height": 544,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "trigger": "ENHANCE QUALITY",
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "colorization",
+      "name": "Colorization",
+      "category": "transform",
+      "summary": "Bring plausible natural color to monochrome footage.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Colorization",
+      "filename": "ltx-2.5-22b-ic-lora-colorization-0.9.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Reference shows the monochrome scene. Edited shows the same scene with natural colors restored. COLORIZE with your chosen palette.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Color is inferred, not historically recovered.",
+        "Describe the same scene and specify colors without changing its geometry.",
+        "Start near the 960 × 544 training resolution."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Colorization",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#dcadf4",
+      "pipeline": "ic_lora",
+      "defaults": {
+        "width": 960,
+        "height": 544,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "trigger": "COLORIZE",
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "cinemagraph",
+      "name": "Cinemagraph",
+      "category": "motion",
+      "summary": "Animate one element of a still while the surrounding scene stays still.",
+      "repo_id": "Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+      "filename": "ltx-2.5-22b-lora-cinemagraph-0.9.safetensors",
+      "conditioning": "image",
+      "adapter_type": "lora",
+      "default_strength": 1.0,
+      "prompt_hint": "CINEMAGRAPH_MOTION, tripod locked-off static camera, only the chosen element moves, everything else frozen, seamless natural loop.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": null,
+      "output_scale": 1,
+      "notes": [
+        "Image-to-video LoRA rather than an IC video adapter.",
+        "Describe exactly what moves and what must remain frozen.",
+        "Camera moves and complex body motion are outside its intended use."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#9bd9c1",
+      "pipeline": "i2v",
+      "defaults": {
+        "width": 512,
+        "height": 704,
+        "frames": 25,
+        "fps": 24,
+        "steps": 30,
+        "cfg": 4.0
+      },
+      "companion_files": [],
+      "trigger": "CINEMAGRAPH_MOTION",
+      "strength_range": [
+        0.5,
+        1.5
+      ],
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "base_variant": "dev",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-dev-transformer-bf16.safetensors",
+      "sampler_note": "The published 30-step CFG recipe uses the non-distilled sampling family. Use the dev transformer for these settings; distilled graphs need their own fixed schedule."
+    },
+    {
+      "id": "slow-motion-control",
+      "name": "Slow motion",
+      "category": "motion",
+      "summary": "Control physical motion speed while keeping playback at 24 fps.",
+      "repo_id": "Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control",
+      "filename": "ltx-2.5-22b-lora-slow-motion-control-1.0.safetensors",
+      "conditioning": "image",
+      "adapter_type": "lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Describe the action naturally. Keep speed language out of the prompt; use the motion speed control instead.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": null,
+      "output_scale": 1,
+      "notes": [
+        "Requires dual-rate conditioning: motion_fps = playback_fps / speed.",
+        "The official example starts at speed 0.2 for 5× slow motion.",
+        "Does not retime an existing video; generates motion from an image."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Slow-Motion-Control",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#9bd9c1",
+      "pipeline": "i2v_speed",
+      "defaults": {
+        "width": 1920,
+        "height": 1088,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0,
+        "speed": 0.2
+      },
+      "companion_files": [
+        "LTX-2.5_I2V_Speed_Control_flow.json",
+        "distilled_speed_demo.py"
+      ],
+      "dimension_multiple": 64,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "ingredients",
+      "name": "Ingredients",
+      "category": "composite",
+      "summary": "Generate a shot guided by a sheet of characters, props and locations.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients",
+      "filename": "ltx-2.5-22b-ic-lora-ingredients-0.9.safetensors",
+      "conditioning": "reference_sheet",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Reference sheet: describe each character, prop and location panel. Generated video: describe the action and camera.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Use a composite sheet on black with clean panels and no text.",
+        "Loop the sheet as a static reference for at least 121 frames.",
+        "Elements absent from the sheet are not identity-controlled."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#f1c18b",
+      "pipeline": "reference_sheet",
+      "defaults": {
+        "width": 768,
+        "height": 448,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "min_frames": 121,
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "sdr-to-hdr",
+      "name": "SDR to HDR",
+      "category": "finishing",
+      "summary": "Convert SDR footage through an ACES-aware HDR finishing pipeline.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR",
+      "filename": "ltx-2.5-22b-ic-lora-sdr-to-hdr-1.0.safetensors",
+      "conditioning": "sdr_video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "",
+      "prompt_policy": "fixed_embeddings",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Dedicated HDR workflow required: ACEScct transform, seam keyframes and scene embeddings.",
+        "Writes scene-linear ACEScg EXR frames and an HLG BT.2020 master.",
+        "Generic RGB sampling or an 8-bit preview is not an HDR deliverable."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/master/example_workflows/2.5/HDR_workflows/LTX-2.5_ICLoRA_SDR_to_HDR_Distilled.json",
+      "color": "#91b8f5",
+      "pipeline": "hdr",
+      "defaults": {
+        "width": null,
+        "height": null,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0,
+        "keyframe_strength": 0.95
+      },
+      "companion_files": [
+        "ltx-2.5-22b-ic-lora-sdr-to-hdr-scene-emb.safetensors"
+      ],
+      "strength_fixed": true,
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "layout-to-render",
+      "name": "Layout to render",
+      "category": "composite",
+      "summary": "Turn a 3D playblast and art-directed first frame into a finished shot.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render",
+      "filename": "ltx-2.5-22b-ic-lora-layout-to-render-1.0.safetensors",
+      "conditioning": "layout_and_image",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Describe the finished first frame, materials, lighting and scene. Keep the layout camera and placement of objects.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Requires both a layout video and an art-directed first-frame image.",
+        "Uses two distilled stages with the IC adapter active in stage 2.",
+        "The first-frame guide sits at temporal position -1."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#f1c18b",
+      "pipeline": "ic_lora_two_stage",
+      "defaults": {
+        "width": 1920,
+        "height": 1088,
+        "frames": 81,
+        "fps": 24,
+        "steps": 8,
+        "stage2_steps": 3,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "dimension_multiple": 64,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "refine-details",
+      "name": "Refine details",
+      "category": "finishing",
+      "summary": "Rebuild fine texture and edges in a dedicated tiled refinement pass.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details",
+      "filename": "ltx-2.5-22b-ic-lora-refine-details-1.0.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Describe the source scene, with sharp photographic detail, natural textures and high-resolution footage.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Resize the guide to the output canvas before encoding.",
+        "Use tiled fusion at every size above a single 1024 × 576 tile.",
+        "For archive footage, restore first and refine second."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#91b8f5",
+      "pipeline": "tiled_refine",
+      "defaults": {
+        "width": 960,
+        "height": 544,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "tile": {
+        "width": 1024,
+        "height": 576,
+        "overlap": 0.5,
+        "blend": 0.05,
+        "frames": 97
+      },
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "restore",
+      "name": "Restore archive",
+      "category": "finishing",
+      "summary": "Restore damaged archive footage, texture and plausible natural color.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Restore",
+      "filename": "ltx-2.5-22b-ic-lora-restore-1.0.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "Describe the period, place, light, materials and clothing. Specify what should not be invented in the negative prompt.",
+      "prompt_policy": "guided",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Trained on LTX-2.3 and officially tested on LTX-2.5.",
+        "Deinterlace before restoration; do not pre-sharpen or pre-denoise.",
+        "Use 960 × 544 tiles and 97-frame windows; preserve source aspect ratio."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Restore",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#91b8f5",
+      "pipeline": "tiled_restore",
+      "defaults": {
+        "width": 1440,
+        "height": 1088,
+        "frames": 97,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "tile": {
+        "width": 960,
+        "height": 544,
+        "overlap": 0.5,
+        "blend": 0.05,
+        "frames": 97
+      },
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    },
+    {
+      "id": "alpha-gen",
+      "name": "Alpha matte",
+      "category": "composite",
+      "summary": "Extract a grayscale foreground matte from an RGB shot.",
+      "repo_id": "Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen",
+      "filename": "ltx-2.5-22b-ic-lora-alpha-gen-0.9.safetensors",
+      "conditioning": "video",
+      "adapter_type": "ic_lora",
+      "default_strength": 1.0,
+      "prompt_hint": "",
+      "prompt_policy": "empty",
+      "reference_downscale_factor": 1,
+      "output_scale": 1,
+      "notes": [
+        "Leave the prompt empty: foreground is predicted automatically.",
+        "Native-resolution stage-1 inference only; no second upscale pass.",
+        "Output is a grayscale matte, not an RGBA video."
+      ],
+      "source_url": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen",
+      "workflow_url": "https://github.com/Lightricks/ComfyUI-LTXVideo/tree/master/example_workflows/2.5",
+      "color": "#f1c18b",
+      "pipeline": "ic_lora_stage1",
+      "defaults": {
+        "width": 1920,
+        "height": 1088,
+        "frames": 121,
+        "fps": 24,
+        "steps": 8,
+        "cfg": 1.0
+      },
+      "companion_files": [],
+      "max_frames": 145,
+      "max_width": 1920,
+      "max_height": 1088,
+      "dimension_multiple": 32,
+      "frame_multiple": 8,
+      "frame_remainder": 1,
+      "strength_range": [
+        0.0,
+        2.0
+      ],
+      "base_variant": "distilled",
+      "recommended_transformer": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "sampler_note": "Use the distilled transformer with the matching native or dedicated sampling graph."
+    }
+  ]
+}

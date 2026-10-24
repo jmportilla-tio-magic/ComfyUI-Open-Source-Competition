@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>OpenPositive · LTX VFX Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23d1fe17'/%3E%3Cpath d='M10 20h20M20 10v20' stroke='%231a1a1a' stroke-width='5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./studio.css">
+</head>
+<body>
+<div id="studio" class="studio">
+  <header class="topbar">
+    <a class="brand" href="./studio.html" aria-label="OpenPositive studio home"><span class="brand-mark">✳</span> OpenPositive<span class="brand-divider"></span><span class="brand-product">LTX VFX Studio</span></a>
+    <div class="topbar-right"><span class="engine-tag"><span class="status-dot"></span>LTX–2.5 <span>22B</span></span><button class="icon-button" id="help-button" aria-label="Open quick start guide" title="Quick start"><i data-icon="help"></i></button><span class="avatar" aria-label="OpenPositive">op</span></div>
+  </header>
+  <aside class="library">
+    <div class="library-heading"><span class="eyebrow">YOUR CREATIVE TOOLKIT</span><span class="count" id="effect-count">15</span></div>
+    <h2>One shot. Every possibility.</h2>
+    <label class="search"><i data-icon="search"></i><input id="effect-search" type="search" placeholder="Find an effect…" aria-label="Search effects"><kbd>/</kbd></label>
+    <div class="library-filters" role="group" aria-label="Filter effects"><button data-filter="all" class="active" aria-pressed="true">All effects</button><button data-filter="favorites" aria-pressed="false"><i data-icon="star"></i>Saved</button></div>
+    <nav id="effect-list" aria-label="Effect library"><p class="loading-text">Loading the creative lab…</p></nav>
+    <div class="library-footer"><span class="mini-mark">✳</span><div><strong>A little post. A lot of possibility.</strong><span>Powered by Lightricks Creative Lab</span></div><a href="https://huggingface.co/collections/Lightricks/ltx-25-creative-lab" target="_blank" rel="noreferrer" aria-label="Open LTX Creative Lab collection"><i data-icon="arrow-up-right"></i></a></div>
+  </aside>
+  <main class="workspace">
+    <div class="workspace-heading"><div class="breadcrumb">WORKSPACE <span>/</span> <span id="shot-name">Untitled shot</span></div><div class="workspace-actions"><button class="text-button" id="reset-button"><i data-icon="rotate"></i>Reset</button><button class="outline-button" id="import-recipe"><i data-icon="upload"></i>Import recipe</button><input type="file" id="recipe-file" accept="application/json,.json" hidden></div></div>
+    <div class="title-row"><div><div class="eyebrow accent">LESS FRICTION. MORE FILM.</div><h1>Your shot. Reimagined.</h1><p>From a good take to something extraordinary.</p></div><span class="version-pill">CREATIVE LAB <b>01—15</b></span></div>
+    <section class="viewer-section" aria-label="Shot preview">
+      <div class="viewer-toolbar"><div class="viewer-tabs" role="group" aria-label="Preview mode"><button data-view="compare" class="active" aria-pressed="true"><i data-icon="columns"></i>Compare</button><button data-view="source" aria-pressed="false">Source</button><button data-view="result" aria-pressed="false">Reference</button></div><button class="icon-button" id="fullscreen-button" aria-label="Expand preview"><i data-icon="expand"></i></button></div>
+      <div class="viewer" id="viewer" style="--split:50%">
+        <div class="media-layer source-layer"><img src="./assets/sample-shot.png" class="sample-image" alt="Cinematic sample: orange car on a road through an Icelandic valley"><video class="source-video" muted playsinline hidden></video></div>
+        <div class="media-layer reference-layer"><img src="./assets/sample-shot.png" class="sample-image" alt="Illustrative nighttime treatment of the sample shot"><video class="reference-video" muted playsinline hidden></video></div>
+        <div class="viewer-label source-label">SOURCE</div><div class="viewer-label result-label">LIGHTING STUDY <span>✦</span></div>
+        <div class="comparison-line"><span><i data-icon="chevrons"></i></span></div>
+        <input class="comparison-input" id="comparison" type="range" min="0" max="100" value="50" aria-label="Before and after comparison position">
+        <div class="viewer-caption" id="viewer-caption"><span class="status-dot"></span>Illustrative preview · not an LTX render</div>
+        <div class="media-error" hidden>Sample image unavailable. Import a shot to get started.</div>
+      </div>
+      <div class="transport"><div class="transport-left"><button id="play-button" class="icon-button" aria-label="Play source clip" disabled><i data-icon="play"></i></button><span class="timecode" id="timecode">00:00:00</span><span class="transport-divider">/</span><span class="timecode muted" id="duration">STILL</span></div><input id="scrubber" type="range" min="0" max="1000" value="0" aria-label="Source playback position" disabled><span class="viewer-resolution" id="source-resolution">SAMPLE SHOT</span><button id="replace-source" class="text-button"><i data-icon="upload"></i>Import shot</button></div>
+    </section>
+    <div class="below-viewer"><span><i data-icon="mouse"></i>Drag to explore the lighting study</span><button id="import-reference" class="text-button">Load a rendered reference<i data-icon="arrow-right"></i></button></div>
+    <section class="prompt-panel"><div class="section-label"><span><i data-icon="sparkles"></i>DIRECT THE DETAILS</span><span class="optional">Your creative brief</span></div><label class="sr-only" for="prompt">Describe the desired result</label><textarea id="prompt" rows="3" placeholder="Describe the look, lighting, and feeling you have in mind…"></textarea><div class="prompt-footer"><button class="prompt-chip" id="prompt-suggestion"><i data-icon="plus"></i><span>Use a starting prompt</span></button><span><kbd>⌘</kbd> <kbd>↵</kbd> to apply</span></div></section>
+    <footer class="workspace-footer"><span><span class="status-dot"></span><span id="connection-status">Local design preview</span></span><span>Made for the finishing touches.</span></footer>
+  </main>
+  <aside class="inspector">
+    <div class="inspector-top"><span class="eyebrow">THE FINISHING TOUCH</span><button id="favorite-button" class="icon-button" aria-label="Save effect" aria-pressed="false"><i data-icon="star"></i></button></div>
+    <div class="effect-hero-icon" id="effect-hero-icon"><i data-icon="moon"></i></div><div class="effect-family" id="effect-family">TRANSFORM</div><h2 id="effect-title">Day to night</h2><p class="effect-summary" id="effect-summary">Change the hour. Keep the story.</p>
+    <div class="model-pill"><span class="status-dot"></span><span id="model-kind">IC-LoRA</span><span class="model-divider">/</span><span>LTX–2.5</span><a id="model-link" href="https://huggingface.co/collections/Lightricks/ltx-25-creative-lab" target="_blank" rel="noreferrer" aria-label="Read model card"><i data-icon="arrow-up-right"></i></a></div>
+    <p class="model-install-status" id="model-install-status" hidden></p>
+    <hr>
+    <div class="control-heading"><label for="strength">Effect strength</label><output id="strength-value" for="strength">1.00</output></div><input id="strength" class="styled-range" type="range" min="0" max="2" step="0.05" value="1"><div class="range-labels"><span>Subtle</span><span>Expressive</span></div><p class="control-help">Controls the LoRA weight. Start at 1.0, then explore.</p>
+    <div class="inspector-section"><div class="section-label"><span>OUTPUT FRAME</span><i data-icon="frame"></i></div><div class="dimensions"><label>Width<input id="width" type="number" min="64" max="8192" step="64" value="768"></label><span>×</span><label>Height<input id="height" type="number" min="64" max="8192" step="64" value="512"></label></div><div class="dimension-presets"><button data-size="768,512" class="active">Landscape</button><button data-size="512,768">Portrait</button><button data-size="768,768">Square</button></div></div>
+    <div class="inspector-section"><div class="section-label"><span>TIMING</span><span class="optional">8n + 1 frames</span></div><div class="dimensions timing"><label>Frames<input id="frames" type="number" min="9" max="257" step="8" value="97"></label><label>Frame rate<select id="frame-rate"><option value="24">24 fps</option><option value="25">25 fps</option><option value="30">30 fps</option></select></label></div></div>
+    <details class="advanced"><summary>Fine-tune<i data-icon="chevron-down"></i></summary><label>Source guidance<output id="guidance-value">1.00</output><input type="range" class="styled-range" id="guidance" min="0" max="1" step="0.05" value="1"></label><label>Negative prompt<textarea id="negative-prompt" rows="3">blurry, distorted, low quality, artifacts</textarea></label></details>
+    <div class="compatibility-note" id="effect-note"><i data-icon="info"></i><p>Use a source clip to preserve its movement and composition.</p></div>
+    <div class="sampler-note"><span>RECOMMENDED SAMPLER</span><strong id="sampler-recommendation"></strong><a id="workflow-guide" target="_blank" rel="noreferrer">Official workflow guide ↗</a></div>
+    <div class="apply-area"><button id="apply-button" class="primary-button"><i data-icon="sparkles"></i><span>Export effect recipe</span><i data-icon="arrow-right"></i></button><p id="apply-caption">Take your creative direction into ComfyUI.</p></div>
+  </aside>
+</div>
+<input type="file" id="source-file" accept="video/*,image/*" hidden><input type="file" id="reference-file" accept="video/*,image/*" hidden>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="help-dialog"><button class="icon-button dialog-close" aria-label="Close guide"><i data-icon="close"></i></button><span class="eyebrow accent">WELCOME TO YOUR FINISHING ROOM</span><h2>A great shot is just the start.</h2><ol><li><strong>Choose the transformation.</strong>Explore all 15 Creative Lab adapters. Each links to its official model card.</li><li><strong>Set your direction.</strong>Import a shot for reference, write a prompt, and dial in the effect. The comparison is an illustrative study until you load your own rendered result.</li><li><strong>Make it in ComfyUI.</strong>Open this panel from an LTX VFX Studio node to apply settings. Connect the model, text encoder, VAE, and source frames, then sample, crop guides, decode, and save.</li></ol><p>Imported media stays in your browser. Connect that same source to the graph for inference. Recipes contain settings only.</p><a href="https://docs.comfy.org/development/api-development/sdks" target="_blank" rel="noreferrer">Explore Comfy’s developer platform ↗</a></dialog>
+<script type="module" src="./studio.js"></script>
+</body>
+</html>

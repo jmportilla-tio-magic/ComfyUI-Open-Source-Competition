@@ -1,0 +1,31 @@
+{
+  "30": {
+    "class_type": "LTXAPIGenerate",
+    "inputs": {
+      "mode": "Text to video",
+      "prompt": "A quiet lakeside at sunrise. Locked camera. Mist drifts above the water.",
+      "model": "ltx-2-5-fast",
+      "resolution": "1280x720",
+      "duration_seconds": 6,
+      "fps": 24,
+      "generate_audio": true,
+      "allow_api_requests": false,
+      "render_id": 0,
+      "timeout_seconds": 1800,
+      "resume_job_id": ""
+    }
+  },
+  "90": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "30",
+        0
+      ],
+      "filename_prefix": "LTX_API/text",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  }
+}

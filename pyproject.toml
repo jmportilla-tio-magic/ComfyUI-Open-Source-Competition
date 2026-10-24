@@ -22,7 +22,7 @@ packages = ["ltx_vfx_studio", "ltx_vfx_studio.ltx_vfx"]
 package-dir = {ltx_vfx_studio = "."}
 
 [tool.setuptools.package-data]
-ltx_vfx_studio = ["data/*.json", "web/*.js", "web/*.css", "web/*.html", "web/assets/*", "web/fonts/*", "scripts/*.py", "docs/*.md", "docs/*.png", "docs/*.json", "examples/*.md", "examples/workflows/*.json", "examples/workflows/*.LICENSE"]
+ltx_vfx_studio = ["data/*.json", "web/*.js", "web/*.css", "web/*.html", "web/assets/*", "web/fonts/*", "scripts/*.py", "docs/*.md", "docs/*.png", "docs/*.json", "docs/demos/*.md", "docs/demos/*.json", "docs/demos/*.jpg", "examples/*.md", "examples/workflows/*.json", "examples/workflows/*.LICENSE"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

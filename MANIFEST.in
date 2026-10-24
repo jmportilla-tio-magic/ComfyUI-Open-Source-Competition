@@ -1,6 +1,6 @@
 include LICENSE README.md requirements.txt package.json
 recursive-include data *.json
-recursive-include docs *.md *.json *.png
+recursive-include docs *.md *.json *.png *.jpg
 recursive-include examples *.md *.json *.LICENSE
 recursive-include scripts *.py
 recursive-include tests *.py *.mjs

@@ -1,0 +1,2 @@
+# This extension uses the host ComfyUI's torch and native LTX nodes.
+# Optional CLI tools: pip install -e ".[platform,models]"

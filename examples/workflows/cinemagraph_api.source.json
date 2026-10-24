@@ -1,0 +1,22 @@
+{
+  "format": "ComfyUI API graph",
+  "input_node": "10",
+  "input_name": "image",
+  "output_node": "90",
+  "studio_node": "30",
+  "authored_for": "LTX VFX Studio",
+  "verified": "Offline structure and current native node signatures; no GPU inference run",
+  "notes": [
+    "Video-only starter graph; no audio generation.",
+    "Uses Cinemagraph model-card 30 steps/CFG4 and training dimensions on dev transformer, native LTXVScheduler default shift and Euler ancestral.",
+    "Optional model-card STG is not enabled in this basic starter.",
+    "Change prompt to name the moving element in your still."
+  ],
+  "sources": [
+    "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+    "https://github.com/Comfy-Org/ComfyUI/blob/master/comfy_extras/nodes_lt.py",
+    "https://github.com/Comfy-Org/ComfyUI/blob/master/comfy_extras/nodes_custom_sampler.py",
+    "https://github.com/Comfy-Org/ComfyUI/blob/master/comfy_extras/nodes_video.py",
+    "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/220e1d45aa0469f518e982102fca4dca92a61862/example_workflows/2.5/LTX-2.5_T2V_I2V_Single_Stage_Distilled.json"
+  ]
+}

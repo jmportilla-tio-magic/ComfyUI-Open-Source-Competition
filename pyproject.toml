@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comfyui-ltx-vfx-studio"
+version = "0.1.0"
+description = "A guided LTX-2.5 Creative Lab finishing desk for ComfyUI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "examples/workflows/LTXVideo.LICENSE", "web/fonts/*-OFL.txt"]
+dependencies = []
+
+[project.optional-dependencies]
+platform = ["comfy-sdk>=0.5.0,<1"]
+models = ["huggingface-hub>=0.27,<3"]
+dev = ["pytest>=8,<10"]
+
+[tool.setuptools]
+packages = ["ltx_vfx_studio", "ltx_vfx_studio.ltx_vfx"]
+package-dir = {ltx_vfx_studio = "."}
+
+[tool.setuptools.package-data]
+ltx_vfx_studio = ["data/*.json", "web/*.js", "web/*.css", "web/*.html", "web/assets/*", "web/fonts/*", "scripts/*.py", "docs/*.md", "docs/*.png", "docs/*.json", "examples/*.md", "examples/workflows/*.json", "examples/workflows/*.LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.comfy]
+DisplayName = "LTX VFX Studio"

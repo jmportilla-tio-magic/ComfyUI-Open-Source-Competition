@@ -1,0 +1,10 @@
+{
+  "name": "openpositive-ltx-vfx-studio",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check web/studio.js && node --check web/extension.js"
+  }
+}
